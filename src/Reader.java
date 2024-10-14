@@ -8,24 +8,24 @@ public class Reader{
 
     public static void calculate(String filePath){
         ArrayList<String> words = readFile(filePath);
-        for (int i = 0; i < words.size(); i++) {
-            if (!Main.wordCount.containsKey(words.get(i))){
-                Main.wordCount.put(words.get(i), 1);
+        for (String word : words) {
+            if (!Main.wordCount.containsKey(word)) {
+                Main.wordCount.put(word, 1);
                 continue;
             }
-            Main.wordCount.put(words.get(i), Main.wordCount.get(words.get(i)) + 1);
+            Main.wordCount.put(word, Main.wordCount.get(word) + 1);
         }
 //        System.out.println(Main.wordCount.toString());
     }
 
     private static ArrayList<String> readFile(String filePath){
-        Scanner scanner = null;
+        Scanner scanner;
         try {
             scanner = new Scanner(new File(filePath));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        ArrayList<String> words = new ArrayList<String>();
+        ArrayList<String> words = new ArrayList<>();
         while(scanner.hasNext()){
             String line = scanner.nextLine();
             String[] wordsInLine = line.split(" ");
